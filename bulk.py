@@ -18,7 +18,6 @@ action基本結構
         "age": 18,
         "class": "資工-1"
         }
-
 }
 """
 def load_datas():
