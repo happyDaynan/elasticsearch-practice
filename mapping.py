@@ -34,13 +34,13 @@ import json
     }
 }
 """
-
+"""
 def create_index(es):
     body = dict()
     body['settings'] = get_setting()
     body['mappings'] = get_mappings()
-    # print(json.dumps(body))
-    # es.indices.create(index='school_members', body=body)
+    print(json.dumps(body))
+    es.indices.create(index='school_members', body=body)
 
 def get_setting():
     settings = {
@@ -58,7 +58,7 @@ def get_mappings():
     mappings = {
         "properties":{
             "sid":{
-                "type": "integer"
+                "type": "keyword"
             },
             "name":{
                 "type": "text"
@@ -73,7 +73,8 @@ def get_mappings():
     }
 
     return mappings
-
+"""
+"""
 # put_mapping 同一index新增mappings
 def change_mappings(es):
     body = get_teacher_mappings()
@@ -83,7 +84,7 @@ def get_teacher_mappings():
     mappings = {
         "properties": {
             "tid": {
-                "type": "integer"
+                "type": "keyword"
             },
             "name": {
                 "type": "text"
@@ -100,8 +101,7 @@ def get_teacher_mappings():
         }
     }
     return mappings
-
-
+"""
 
 if __name__ == "__main__":
     # 建立連結
@@ -113,13 +113,13 @@ if __name__ == "__main__":
     # change_mappings(es)
 
     # put_alias新增別名
-    es.indices.put_alias(index='school_members', name='school')
+    # es.indices.put_alias(index='school_members', name='school')
     # delete_alias 刪除別名
     # es.indices.delete_alias(index='school_members', name='school')
 
     # es.indices.get 回傳index訊息
-    result = es.indices.get(index='school_members') #index指定要get哪個index的資訊
-    print(result)
+    # result = es.indices.get(index='school_members') #index指定要get哪個index的資訊
+    # print(result)
 
     # es.indices.exists 查看index是否存在
     # result = es.indices.exists(index='school_members')
